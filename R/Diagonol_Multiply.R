@@ -1,0 +1,20 @@
+#' Diagonal Multiplication of a Matrix and a Vector
+#'
+#' Internally used function that performs a diagonal multiplication of a matrix `X` and a vector `W`. This operation multiplies each column of `X` by the corresponding element in `W`.
+#'
+#' @param X A numeric matrix where each column represents a variable and each row represents an observation.
+#' @param W A numeric vector of the same length as the number of rows in `X`.
+#' @return A numeric matrix with the same dimensions as `X`, where each column of `X` has been element-wise multiplied by the corresponding value in `W`.
+#' @noRd
+
+
+# Function to multiply diagonally for a matrix and a vector
+Diagonol_Multiply = function(X, W) {
+  n = dim(X)[1]
+  X_T = t(X)
+  Scaled_X = X_T
+  for(i in 1:n) {
+    Scaled_X[, i] = X_T[, i] * W[i]
+  }
+  return(Scaled_X)
+}

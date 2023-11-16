@@ -1,40 +1,33 @@
+#' Logistic Regression Estimation
+#'
+#' Performs logistic regression estimation using the Newton-Raphson method. This function estimates coefficients for logistic regression and computes various statistics, including a confusion matrix, standard errors, Z-scores, and p-values.
+#'
+#' @param X A numeric matrix where each row is an observation and each column is a predictor variable.
+#' @param y A numeric vector of binary response variables (0 or 1) corresponding to each row of X.
+#' @return A list containing various components:
+#'   - Coefficients: A data frame of logistic regression coefficients, standard errors, Z-scores, and p-values.
+#'   - beta: The final estimated coefficients.
+#'   - y_pred: Predicted values based on the logistic model.
+#'   - times: The number of iterations taken in the Newton-Raphson process.
+#'   - J: The Fisher Information Matrix.
+#'   - J_inv: The inverse of the Fisher Information Matrix.
+#'   - delta: The final delta value in the iteration process.
+#'   - confusion_matrix: A confusion matrix of the model.
+#' @importFrom stats pnorm
+#' @export
+#' @examples
+#' X <- matrix(rnorm(100), ncol=5)
+#' y <- rbinom(20, 1, 0.5)
+#' result <- Logistic_Estimation(X, y)
+#' print(result$Coefficients)
+#' print(result$confusion_matrix)
+#'
+#' X2 <- matrix(rnorm(20), ncol=2, dimnames = list(NULL, c("Variable1", "Variable2")))
+#' y2 <- rbinom(10, 1, 0.5)
+#' result2 <- Logistic_Estimation(X2, y2)
+#' print(result2$Coefficients)
+#' print(result2$confusion_matrix)
 
-
-# Define the logit function
-Logit = function(X, beta) {
-  # Calculate the logit values
-  logits <- X %*% beta
-
-  # Handling extreme values in the exponentiation
-  if (sum(exp(-logits) == 0) > 0) {
-    a = max(logits)
-    y <- exp((X %*% beta) - a)
-    prob_0 <- exp(-a) / (exp(-a) + sum(y))
-    probs <- y / (exp(-a) + sum(y))
-    return(c(prob_0, probs))
-  } else {
-    z = X %*% beta
-    p = ifelse(z > 0, 1 / (1 + exp(-z)), exp(z) / (1 + exp(z)))
-    return (as.vector(p))
-  }
-}
-
-# Function to multiply diagonally for a matrix and a vector
-Diagonol_Multiply = function(X, W) {
-  n = dim(X)[1]
-  X_T = t(X)
-  Scaled_X = X_T
-  for(i in 1:n) {
-    Scaled_X[, i] = X_T[, i] * W[i]
-  }
-  return(Scaled_X)
-}
-
-# Prediction function using the logit model
-Logistic_Predict = function(X, Beta, thre = 0.5) {
-  Miu = Logit(X, Beta)
-  return(as.numeric(Miu > thre))
-}
 
 # Logistic regression estimation function
 Logistic_Estimation = function(X, y) {
@@ -80,7 +73,11 @@ Logistic_Estimation = function(X, y) {
   rownames(confusion_matrix) <- c("Actual Positive Rate", "Actual Negative Rate")
 
   # Calculate standard errors, Z-scores, and p-values
-  Names = c("Intercept", colnames(X)[1:p + 1])
+  if (is.null(colnames(X))) {
+    Names <- c("Intercept", paste0("Var_", 1:p))
+  } else {
+    Names <- c("Intercept", colnames(X)[1:p + 1])
+  }
   StdErr = sqrt(diag(J_inv))
   Z_Score = Beta_Old / StdErr
   P_Value = 2 * pnorm(-abs(Z_Score))
