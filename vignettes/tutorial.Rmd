@@ -1,0 +1,114 @@
+---
+title: "Guide to My Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{A Comprehensive Guide to My Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+
+# Introduction to LogisticAlpha Package
+
+The LogisticAlpha package is designed for advanced statistical analysis in the field of logistic regression. It offers a suite of functions to perform logistic regression analysis, including the calculation of logit values, diagonal matrix multiplication, logistic prediction, and logistic regression estimation. This vignette will guide you through each of these functions, demonstrating their usage and importance in logistic regression analysis.
+
+```{r}
+
+library(LogisticAlpha)
+
+
+```
+
+
+## Logit Function
+
+The `Logit` function calculates logit values for a given set of predictors and coefficients. It's a fundamental part of logistic regression, transforming linear combinations into probabilities.
+
+### Usage
+
+```{r}
+X <- matrix(1:20, ncol=2)
+beta <- runif(2)
+logit_values <- Logit(X, beta)
+
+plot(X %*% beta ,logit_values, type="l")
+
+```
+
+## Diagonal_Multiply Function
+
+Diagnoal_Multiply multiplication is defined as the element-wise multiplication of a matrix and a vector. The resulting matrix has the same dimensions as the original matrix.
+
+This function is not defined as user input, but is used in the `Logit` function.
+
+
+## Logistic_Predict Function
+
+The `Logistic_Predict` function calculates the probability of a binary outcome based on a set of predictors and coefficients. It's a fundamental part of logistic regression, transforming linear combinations into probabilities.
+
+### Usage
+
+```{r}
+
+X <- matrix(rnorm(20), ncol=2)
+
+Beta <- runif(2) #suppose the this is the estimated beta
+
+y = rbinom(10, 1, 0.5) #suppose this is the outcome
+
+predictions <- Logistic_Predict(X, Beta)
+
+sum(y != predictions)/nrow(X) #proportion of incorrect predictions
+
+
+```
+
+## Logistic_Estimate Function
+
+The `Logistic_Estimate` function estimates the coefficients of a logistic regression model using the Newton-Raphson method. It's a fundamental part of logistic regression, transforming linear combinations into probabilities.
+
+### Usage
+
+```{r}
+
+# Without column names in X
+X1 <- matrix(rnorm(20), ncol=2)
+y1 <- rbinom(10, 1, 0.5)
+result1 <- Logistic_Estimation(X1, y1)
+
+print(result1$Coefficients)
+
+```
+
+```{r}
+
+# Using NHANES data to develop logistic model for diabetes adjusted for Demographic variables
+library(NHANES)
+
+full_data = tibble::tibble(NHANES)
+
+temp_data = na.omit(unique(full_data[,c("Diabetes","BMI","Age","Gender")]))
+
+temp_data$y = as.numeric(temp_data$Diabetes=="Yes")
+temp_data$Sex= as.numeric(temp_data$Gender=="male")
+
+y = temp_data$y
+
+X = temp_data[,c("BMI","Age","Sex")]
+
+result2 <- Logistic_Estimation(X,y)
+
+print(result2$Coefficients)
+
+```
+### Comparison to glm() function
+
+```{r}
+
+glm_1 = glm(Diabetes~Age+Sex+BMI, data = temp_data, family = "binomial")
+
+summary(glm_1)
+
+```
+
+
