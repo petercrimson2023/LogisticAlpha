@@ -49,7 +49,7 @@ Logistic_Estimation = function(X, y) {
   Times = 1
 
   # Newton-Raphson Iteration for coefficient estimation
-  while (delta > 1e-7) {
+  while (delta > 1e-7 && Times < 100) {
     Miu = Logit(X, Beta_Old)
     Var_Logit = Miu * (1 - Miu)
     Scaled_X = Diagonol_Multiply(X, Var_Logit)

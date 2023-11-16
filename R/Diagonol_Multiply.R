@@ -13,6 +13,9 @@ Diagonol_Multiply = function(X, W) {
   n = dim(X)[1]
   X_T = t(X)
   Scaled_X = X_T
+  if (length(W) != n) {
+    stop("Error: The number of rows in X must be equal to the length of W.")
+  }
   for(i in 1:n) {
     Scaled_X[, i] = X_T[, i] * W[i]
   }

@@ -29,3 +29,6 @@ Logit = function(X, beta) {
     return (as.vector(p))
   }
 }
+
+
+
