@@ -14,5 +14,6 @@ Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
+    NHANES
 VignetteBuilder: knitr
 Config/testthat/edition: 3
