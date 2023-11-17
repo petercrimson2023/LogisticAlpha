@@ -41,7 +41,7 @@ result =Logistic_Estimation(X, y)
 print(result$Coefficients)
 print(result$confusion_matrix)
 
-
+set.seed(1)
 X =matrix(rnorm(50), ncol = 5)
 y =rbinom(10, 1, 0.5)
 result =Logistic_Estimation(X, y, print_result = TRUE)
