@@ -14,7 +14,7 @@
 # Define the logit function
 Logit = function(X, beta) {
   # Calculate the logit values
-  logits <- X %*% beta
+  logits = X %*% beta
 
   # Handling extreme values in the exponentiation
   if (sum(exp(-logits) == 0) > 0) {
