@@ -6,6 +6,12 @@
 #' @param W A numeric vector of the same length as the number of rows in `X`.
 #' @return A numeric matrix with the same dimensions as `X`, where each column of `X` has been element-wise multiplied by the corresponding value in `W`.
 #' @noRd
+#'
+#' @examples
+#' X = matrix(c(1, 2, 3, 4), nrow = 2, ncol = 2)
+#' W = c(-1, -2)
+#' expected = matrix(c(-1, -3, -4, -8), nrow = 2, ncol = 2)
+#' result = Diagonol_Multiply(X, W)
 
 
 # Function to multiply diagonally for a matrix and a vector

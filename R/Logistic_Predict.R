@@ -10,6 +10,12 @@
 #' X <- matrix(rnorm(20), ncol=2)
 #' Beta <- runif(2)
 #' predictions <- Logistic_Predict(X, Beta)
+#'
+#' X = matrix(c(1, 2, 3, 4), ncol = 2)
+#' Beta = c(0.5, -0.5)
+#' expected = c(0, 0)
+#' result = Logistic_Predict(X, Beta)
+#' all.equal(result, expected,tolerance = 0.0001)
 #' @export
 
 

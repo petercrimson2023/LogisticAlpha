@@ -6,9 +6,17 @@
 #' @param beta A numeric vector of coefficients corresponding to the predictor variables.
 #' @return A numeric vector of logit values. When handling extreme values, the function adjusts the computation to maintain numerical stability.
 #' @examples
+#' # Normal Case
 #' X = matrix(rnorm(20), ncol=2)
 #' beta = runif(2)
 #' logit_values = Logit(X, beta)
+#'
+#' # Extreme Values
+#' X = cbind(1,c(100,2000,400))
+#' beta = c(1,2)
+#' result = c(0.0000001,0.0000001,0.9999999,0.0000001)
+#' all.equal(Logit(X, beta), result, tolerance = 0.0001)
+#'
 #' @export
 
 # Define the logit function

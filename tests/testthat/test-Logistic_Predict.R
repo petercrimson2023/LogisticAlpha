@@ -1,8 +1,5 @@
 library(testthat)
 
-test_that("multiplication works", {
-  expect_equal(2 * 2, 4)
-})
 
 # Test Case 1: Regular Case (Above Threshold)
 test_that("Regular Case (Above Threshold)", {

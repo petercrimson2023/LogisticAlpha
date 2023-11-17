@@ -24,9 +24,17 @@
 #'
 #' @export
 #' @examples
-#' X <- matrix(rnorm(100), ncol = 5)
-#' y <- rbinom(20, 1, 0.5)
-#' result <- Logistic_Estimation(X, y)
+#' set.seed(1)
+#' X = matrix(rnorm(100), ncol = 5)
+#' y =rbinom(20, 1, 0.5)
+#' result =Logistic_Estimation(X, y)
+#' print(result$Coefficients)
+#' print(result$confusion_matrix)
+#'
+#'
+#' #' X =matrix(rnorm(50), ncol = 5)
+#' y =rbinom(10, 1, 0.5)
+#' result =Logistic_Estimation(X, y, print_result = TRUE)
 #' print(result$Coefficients)
 #' print(result$confusion_matrix)
 
@@ -85,8 +93,8 @@ Logistic_Estimation = function(X, y,print_result = FALSE) {
   TN_rate = sum(y == 0 & y_pred == 0) / n
   FN_rate = sum(y == 1 & y_pred == 0) / n
   confusion_matrix = matrix(c(TP_rate, FP_rate, FN_rate, TN_rate), nrow = 2, byrow = TRUE)
-  colnames(confusion_matrix) <- c("Predicted Positive Rate", "Predicted Negative Rate")
-  rownames(confusion_matrix) <- c("Actual Positive Rate", "Actual Negative Rate")
+  colnames(confusion_matrix) =c("Predicted Positive Rate", "Predicted Negative Rate")
+  rownames(confusion_matrix) =c("Actual Positive Rate", "Actual Negative Rate")
 
   # Calculate standard errors, Z-scores, and p-values
   if (is.null(colnames(X))) {
