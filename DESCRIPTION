@@ -1,11 +1,10 @@
 Package: LogisticAlpha
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Conduct a Binary Logistic Regression
 Version: 0.1.0
 Author: Bulun Te
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Maintainer: The package maintainer <tebulun@umich.edu>
+Description: Fitting a Logistic Regression using Fisher Scoring Method and provide baseic diagnostic statistics and then giving the predict of y based on a threshold with 0.5 by default
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
@@ -13,7 +12,7 @@ RoxygenNote: 7.2.3
 Suggests:
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
     NHANES
 VignetteBuilder: knitr
 Config/testthat/edition: 3
