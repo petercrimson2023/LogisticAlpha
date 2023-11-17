@@ -6,7 +6,8 @@ test_that("Valid Inputs", {
   X <- matrix(rnorm(20), nrow = 10, ncol = 2)
   y <- rbinom(10, 1, 0.5)
   result <- Logistic_Estimation(X, y)
-  expect_type(result, "list")
+  glm_beta <- c(0.69761989,0.07691081, -1.38142749)
+  expect_equal(all.equal(result$Coefficients$Estimate,glm_beta,tolerance = 1e-6))
 })
 
 # Test Case 2: Mismatched Dimensions
