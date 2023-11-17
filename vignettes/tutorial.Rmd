@@ -16,6 +16,10 @@ The LogisticAlpha package is designed for advanced statistical analysis in the f
 
 library(LogisticAlpha)
 
+if (!requireNamespace("ggplot2", quietly = TRUE)) {
+  install.packages("ggplot2")
+}
+library(ggplot2)
 
 ```
 
