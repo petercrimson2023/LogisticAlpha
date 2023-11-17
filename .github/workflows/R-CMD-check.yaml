@@ -1,7 +1,8 @@
-push:
-  branches: [Master]
-pull_request:
-  branches: [Master]
+on:
+  push:
+    branches: [Master]
+  pull_request:
+    branches: [Master]
 
 name: R-CMD-check
 
