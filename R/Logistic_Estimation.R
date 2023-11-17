@@ -30,7 +30,7 @@
 
 
 # Logistic regression estimation function
-Logistic_Estimation = function(X, y) {
+Logistic_Estimation = function(X, y,print_result = FALSE) {
   n = dim(X)[1]
   p = dim(X)[2]
 
@@ -85,17 +85,19 @@ Logistic_Estimation = function(X, y) {
   rownames(result_frame) = Names
 
   # Print results
-  print("Coefficients:")
 
-  print(result_frame)
-  print(paste0("Iteration times: ", Times))
-  print("Confusion Matrix:")
-  print(confusion_matrix)
-  print("Fisher Information Matrix")
-  print(J)
+  if (print_result) {
+    print("Coefficients:")
+    print(result_frame)
+    print(paste0("Iteration times: ", Times-1))
+    print("Confusion Matrix:")
+    print(confusion_matrix)
+    print("Fisher Information Matrix")
+    print(J)
+  }
 
   # Return a list of results
-  return(list(Coefficients = result_frame, beta = Beta_Old, y_pred = y_pred, times = Times, J = J, J_inv = J_inv, delta = delta, confusion_matrix =
+  return(list(Coefficients = result_frame, beta = Beta_Old, y_pred = y_pred, times = Times-1, J = J, J_inv = J_inv, delta = delta, confusion_matrix =
                 confusion_matrix))
 
 }

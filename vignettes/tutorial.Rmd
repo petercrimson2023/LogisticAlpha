@@ -49,6 +49,7 @@ The `Logistic_Predict` function calculates the probability of a binary outcome b
 ### Usage
 
 ```{r}
+set.seed(2027)
 
 X <- matrix(rnorm(20), ncol=2)
 
@@ -74,9 +75,7 @@ The `Logistic_Estimate` function estimates the coefficients of a logistic regres
 # Without column names in X
 X1 <- matrix(rnorm(20), ncol=2)
 y1 <- rbinom(10, 1, 0.5)
-result1 <- Logistic_Estimation(X1, y1)
-
-print(result1$Coefficients)
+result1 <- Logistic_Estimation(X1, y1,print_result = T)
 
 ```
 
@@ -96,9 +95,8 @@ y = temp_data$y
 
 X = temp_data[,c("BMI","Age","Sex")]
 
-result2 <- Logistic_Estimation(X,y)
+result2 <- Logistic_Estimation(X,y,print_result = T)
 
-print(result2$Coefficients)
 
 ```
 ### Comparison to glm() function
@@ -110,5 +108,31 @@ glm_1 = glm(Diabetes~Age+Sex+BMI, data = temp_data, family = "binomial")
 summary(glm_1)
 
 ```
+
+```{r,results='hide'}
+library(bench)
+
+set.seed(123)
+
+X <- matrix(rnorm(100 * 5), ncol = 5)
+y <- rbinom(100, 1, 0.5)
+
+benchmark <- bench::mark(
+  glm_R = as.vector(coef(glm(y ~ X, family = "binomial"))),
+  LogisticAlpha = as.vector(Logistic_Estimation(X, y)$Coefficients$Estimate),
+  min_iterations = 200
+)
+
+
+```
+
+```{r}
+
+plot(benchmark)
+
+```
+
+
+
 
 
