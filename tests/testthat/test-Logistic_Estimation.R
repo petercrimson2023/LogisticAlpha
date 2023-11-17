@@ -17,7 +17,8 @@ test_that("Mismatched Dimensions", {
   set.seed(123)
   X = matrix(rnorm(20), nrow = 10, ncol = 2)
   y = rbinom(9, 1, 0.5) # Length of y is 9, not 10
-  result = capture.output(output = Logistic_Estimation(X, y))
+  result = capture.output(Logistic_Estimation(X, y))[1]
+  output = Logistic_Estimation(X, y)
   expect_true(grepl("Dimension Error",result))
   expect_equal(output, -1)
 })
