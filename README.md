@@ -3,6 +3,7 @@
 [![R-CMD-check](https://github.com/petercrimson2023/LogisticAlpha/actions/workflows/R-CMD-check.yaml/badge.svg?branch=Master)](https://github.com/petercrimson2023/LogisticAlpha/actions/workflows/R-CMD-check.yaml)
 
 [![Codecov test coverage](https://codecov.io/gh/petercrimson2023/LogisticAlpha/branch/Master/graph/badge.svg)](https://app.codecov.io/gh/petercrimson2023/LogisticAlpha?branch=Master)
+
 [![R-CMD-check](https://github.com/petercrimson2023/LogisticAlpha/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/petercrimson2023/LogisticAlpha/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -25,14 +26,20 @@ This R package provides a set of functions for performing logistic regression an
 
 ### Sample data
 
+
 set.seed(123)
 X = matrix(rnorm(100), ncol=2)
 y = rbinom(50, 1, 0.5)
 
+
 ### Logistic Regression Estimation
-result <- Logistic_Estimation(X, y)
+
+
+result = Logistic_Estimation(X, y)
+
 
 #### View results
+
 print(result$Coefficients)
 
 ## Installation 
@@ -40,9 +47,10 @@ print(result$Coefficients)
 ### Using devtools::install_github() 
 
 install.packages("devtools")
-library(devtools)
-install_github("https://github.com/petercrimson2023/LogisticAlpha/",ref="Master")
 
+library(devtools)
+
+install_github("https://github.com/petercrimson2023/LogisticAlpha/",ref="Master")
 
 
 
