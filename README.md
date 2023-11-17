@@ -27,7 +27,7 @@ print(result$Coefficients)
 
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/petercrimson2023/LogisticAlpha/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/petercrimson2023/LogisticAlpha/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/petercrimson2023/LogisticAlpha/actions/workflows/R-CMD-check.yaml/badge.svg?branch=Master)](https://github.com/petercrimson2023/LogisticAlpha/actions/workflows/R-CMD-check.yaml)
 
 
 <!-- badges: end -->
