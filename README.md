@@ -1,3 +1,11 @@
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/petercrimson2023/LogisticAlpha/actions/workflows/R-CMD-check.yaml/badge.svg?branch=Master)](https://github.com/petercrimson2023/LogisticAlpha/actions/workflows/R-CMD-check.yaml)
+
+
+<!-- badges: end -->
+
+
 # R Package for Logistic Regression Analysis
 
 This R package provides a set of functions for performing logistic regression analysis, including computation of logit values, logistic prediction, and logistic regression estimation. It is designed for users who need robust and efficient tools for statistical analysis in R.
@@ -25,12 +33,6 @@ result <- Logistic_Estimation(X, y)
 print(result$Coefficients)
 
 
-
-<!-- badges: start -->
-[![R-CMD-check](https://github.com/petercrimson2023/LogisticAlpha/actions/workflows/R-CMD-check.yaml/badge.svg?branch=Master)](https://github.com/petercrimson2023/LogisticAlpha/actions/workflows/R-CMD-check.yaml)
-
-
-<!-- badges: end -->
 
 
 
