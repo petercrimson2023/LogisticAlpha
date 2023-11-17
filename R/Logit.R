@@ -6,9 +6,9 @@
 #' @param beta A numeric vector of coefficients corresponding to the predictor variables.
 #' @return A numeric vector of logit values. When handling extreme values, the function adjusts the computation to maintain numerical stability.
 #' @examples
-#' X <- matrix(rnorm(20), ncol=2)
-#' beta <- runif(2)
-#' logit_values <- Logit(X, beta)
+#' X = matrix(rnorm(20), ncol=2)
+#' beta = runif(2)
+#' logit_values = Logit(X, beta)
 #' @export
 
 # Define the logit function
@@ -20,9 +20,9 @@ Logit = function(X, beta) {
   if (sum(exp(-logits) == 0) > 0) {
     #print("Into Branch 1")
     a = max(logits)
-    y <- exp((X %*% beta) - a)
-    prob_0 <- exp(-a) / (exp(-a) + sum(y))
-    probs <- y / (exp(-a) + sum(y))
+    y = exp((X %*% beta) - a)
+    prob_0 = exp(-a) / (exp(-a) + sum(y))
+    probs = y / (exp(-a) + sum(y))
     return(c(abs(prob_0-1e-7), abs(probs-1e-7)))
   } else {
     #print("Into Branch 2")

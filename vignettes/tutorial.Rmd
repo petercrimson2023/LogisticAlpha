@@ -29,9 +29,9 @@ The `Logit` function calculates logit values for a given set of predictors and c
 ### Usage
 
 ```{r}
-X <- matrix(1:20, ncol=2)
-beta <- runif(2)
-logit_values <- Logit(X, beta)
+X = matrix(1:20, ncol=2)
+beta = runif(2)
+logit_values = Logit(X, beta)
 
 plot(X %*% beta ,logit_values, type="l")
 
@@ -53,13 +53,13 @@ The `Logistic_Predict` function calculates the probability of a binary outcome b
 ```{r}
 set.seed(2027)
 
-X <- matrix(rnorm(20), ncol=2)
+X = matrix(rnorm(20), ncol=2)
 
-Beta <- runif(2) #suppose the this is the estimated beta
+Beta = runif(2) #suppose the this is the estimated beta
 
 y = rbinom(10, 1, 0.5) #suppose this is the outcome
 
-predictions <- Logistic_Predict(X, Beta)
+predictions = Logistic_Predict(X, Beta)
 
 sum(y != predictions)/nrow(X) #proportion of incorrect predictions
 
@@ -75,9 +75,9 @@ The `Logistic_Estimate` function estimates the coefficients of a logistic regres
 ```{r}
 
 # Without column names in X
-X1 <- matrix(rnorm(20), ncol=2)
-y1 <- rbinom(10, 1, 0.5)
-result1 <- Logistic_Estimation(X1, y1,print_result = T)
+X1 = matrix(rnorm(20), ncol=2)
+y1 = rbinom(10, 1, 0.5)
+result1 = Logistic_Estimation(X1, y1,print_result = T)
 
 ```
 
@@ -98,7 +98,7 @@ y = temp_data$y
 
 X = temp_data[,c("BMI","Age","Sex")]
 
-result2 <- Logistic_Estimation(X,y,print_result = T)
+result2 = Logistic_Estimation(X,y,print_result = T)
 
 
 ```
@@ -116,10 +116,10 @@ library(bench)
 
 set.seed(123)
 
-X <- matrix(rnorm(100 * 5), ncol = 5)
-y <- rbinom(100, 1, 0.5)
+X = matrix(rnorm(100 * 5), ncol = 5)
+y = rbinom(100, 1, 0.5)
 
-benchmark <- bench::mark(
+benchmark = bench::mark(
   glm_R = as.vector(coef(glm(y ~ X, family = "binomial"))),
   LogisticAlpha = as.vector(Logistic_Estimation(X, y)$Coefficients$Estimate),
   min_iterations = 200

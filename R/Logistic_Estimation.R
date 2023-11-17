@@ -51,9 +51,9 @@ Logistic_Estimation = function(X, y,print_result = FALSE) {
   Times = 1
 
   # Newton-Raphson Iteration for coefficient estimation
-  # Newton-Raphson Iteration for coefficient estimation
 
-    while (delta > 1e-7 && Times < 500) {
+    while (delta > 1e-7 && Times < 500)
+    {
       #print(Times)
       Miu = Logit(X, Beta_Old)
       Var_Logit = Miu * (1 - Miu)
@@ -89,9 +89,9 @@ Logistic_Estimation = function(X, y,print_result = FALSE) {
 
   # Calculate standard errors, Z-scores, and p-values
   if (is.null(colnames(X))) {
-    Names <- c("Intercept", paste0("Var_", 1:p))
+    Names = c("Intercept", paste0("Var_", 1:p))
   } else {
-    Names <- c("Intercept", colnames(X)[1:p + 1])
+    Names = c("Intercept", colnames(X)[1:p + 1])
   }
   StdErr = sqrt(diag(J_inv))
   Z_Score = Beta_Old / StdErr
