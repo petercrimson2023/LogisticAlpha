@@ -23,7 +23,9 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+          # Add required packages here
+          install:
+            - tidyr
+            - ggplot2
 
       - uses: r-lib/actions/check-r-package@v2
-
-
