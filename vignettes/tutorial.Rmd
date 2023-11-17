@@ -22,6 +22,9 @@ if (!requireNamespace("ggplot2", quietly = TRUE)) {
 if (!requireNamespace("tidyr", quietly = TRUE)) {
   install.packages("tidyr")
 }
+if (!requireNamespace("ggbeeswarm", quietly = TRUE)) {
+  install.packages("ggbeeswarm")
+}
 library(ggplot2)
 
 ```
