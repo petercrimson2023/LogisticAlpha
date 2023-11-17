@@ -1,7 +1,7 @@
-  push:
-    branches: [Master]
-  pull_request:
-    branches: [Master]
+push:
+  branches: [Master]
+pull_request:
+  branches: [Master]
 
 name: R-CMD-check
 
@@ -25,7 +25,11 @@ jobs:
 
       - uses: r-lib/actions/check-r-package@v2
 
-- name: Upload coverage reports to Codecov
-  uses: codecov/codecov-action@v3
-  env:
-    CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+  Upload-coverage:
+    runs-on: ubuntu-latest
+    needs: R-CMD-check
+    steps:
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
