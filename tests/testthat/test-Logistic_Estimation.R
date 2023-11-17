@@ -5,8 +5,10 @@ library(testthat)
 test_that("Valid Inputs", {
   X <- matrix(rnorm(20), nrow = 10, ncol = 2)
   y <- rbinom(10, 1, 0.5)
+  temp_df = data.frame(x1=X[,1], x2=X[,2], y=y)
+  glm_result <- glm(y ~ x1 + x2, data = temp_df, family = binomial(link = "logit"))
+  glm_beta <- as.vector(glm_result$coefficients)
   result <- Logistic_Estimation(X, y)
-  glm_beta <- c(0.69761989,0.07691081, -1.38142749)
   expect_equal(result$Coefficients$Estimate,glm_beta,tolerance = 1e-6)
 })
 
