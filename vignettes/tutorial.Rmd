@@ -86,8 +86,9 @@ result1 <- Logistic_Estimation(X1, y1,print_result = T)
 # Using NHANES data to develop logistic model for diabetes adjusted for Demographic variables
 library(NHANES)
 
-full_data = tibble::tibble(NHANES)
+#full_data = tibble::tibble(NHANES)
 
+full_data = NHANES
 temp_data = na.omit(unique(full_data[,c("Diabetes","BMI","Age","Gender")]))
 
 temp_data$y = as.numeric(temp_data$Diabetes=="Yes")
@@ -108,7 +109,6 @@ result2 <- Logistic_Estimation(X,y,print_result = T)
 glm_1 = glm(Diabetes~Age+Sex+BMI, data = temp_data, family = "binomial")
 
 summary(glm_1)
-
 ```
 
 ```{r}

@@ -1,6 +1,5 @@
 library(testthat)
 
-
 # Test Case 1: Valid Inputs
 test_that("Valid Inputs", {
   set.seed(123)
@@ -51,4 +50,21 @@ test_that("Non Convergence", {
   expect_true(result == -1)
 }
 )
+
+# Test Case 6: Dataset with colnames and print_result = True
+test_that("Actual Data Set Test", {
+  library(NHANES)
+  full_data = NHANES
+  temp_data = na.omit(unique(full_data[,c("Diabetes","BMI","Age","Gender")]))
+  temp_data$y = as.numeric(temp_data$Diabetes=="Yes")
+  temp_data$Sex= as.numeric(temp_data$Gender=="male")
+  y = temp_data$y
+  X = temp_data[,c("BMI","Age","Sex")]
+  result2 <- Logistic_Estimation(X,y,print_result = T)
+  glm_1 = glm(Diabetes~BMI+Age+Sex, data = temp_data, family = "binomial")
+  expect_equal(as.vector(result2$Coefficients$Estimate),
+               as.vector(glm_1$coefficients),
+               tolerance = 1e-6)
+})
+
 
