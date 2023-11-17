@@ -51,18 +51,30 @@ Logistic_Estimation = function(X, y,print_result = FALSE) {
   Times = 1
 
   # Newton-Raphson Iteration for coefficient estimation
-  while (delta > 1e-7 && Times < 100) {
-    Miu = Logit(X, Beta_Old)
-    Var_Logit = Miu * (1 - Miu)
-    Scaled_X = Diagonol_Multiply(X, Var_Logit)
-    J = Scaled_X %*% X # Fisher Information Matrix
-    z = (y - Miu) / Var_Logit
-    J_inv = solve(J)
-    Beta_New = Beta_Old + as.vector(J_inv %*% Scaled_X %*% z)
-    delta = max(abs(Beta_Old - Beta_New))
-    Times = Times + 1
-    Beta_Old = Beta_New
-  }
+  # Newton-Raphson Iteration for coefficient estimation
+  tryCatch({
+    while (delta > 1e-7,Times < 500) {
+      print(Times)
+      Miu = Logit(X, Beta_Old)
+      Var_Logit = Miu * (1 - Miu)
+      Scaled_X = Diagonol_Multiply(X, Var_Logit)
+      J = Scaled_X %*% X # Fisher Information Matrix
+      z = (y - Miu) / Var_Logit
+
+      qr_decomp = qr(J)
+      J_inv = qr.solve(qr_decomp)
+
+      #J_inv = solve(J)
+
+      Beta_New = Beta_Old + as.vector(J_inv %*% Scaled_X %*% z)
+      delta = max(abs(Beta_Old - Beta_New))
+      Times = Times + 1
+      Beta_Old = Beta_New
+    }
+  }, error = function(e) {
+    print("Error in the Newton-Raphson Iteration, There is 1 in probability, the algorithm can not converge")
+    return(-1)
+  })
 
   # Predict and calculate confusion matrix
   y_pred = Logistic_Predict(X, Beta_Old)
