@@ -52,11 +52,3 @@ test_that("Non Convergence", {
 }
 )
 
-#
-# set.seed(38)
-# X = matrix(rnorm(100), ncol = 5)
-# y = rbinom(20, 1, 0.5)
-# result = Logistic_Estimation(X, y)
-# result$Coefficients$Estimate
-#
-#
