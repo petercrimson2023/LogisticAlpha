@@ -16,6 +16,7 @@ Suggests:
     NHANES,
     bench,
     tidyr,
-    ggplot2
+    ggplot2,
+    ggbeeswarm
 VignetteBuilder: knitr
 Config/testthat/edition: 3
