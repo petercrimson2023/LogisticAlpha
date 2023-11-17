@@ -86,6 +86,7 @@ Logistic_Estimation = function(X, y) {
 
   # Print results
   print("Coefficients:")
+
   print(result_frame)
   print(paste0("Iteration times: ", Times))
   print("Confusion Matrix:")
