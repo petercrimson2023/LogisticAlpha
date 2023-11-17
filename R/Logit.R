@@ -18,17 +18,18 @@ Logit = function(X, beta) {
 
   # Handling extreme values in the exponentiation
   if (sum(exp(-logits) == 0) > 0) {
+    #print("Into Branch 1")
     a = max(logits)
     y <- exp((X %*% beta) - a)
     prob_0 <- exp(-a) / (exp(-a) + sum(y))
     probs <- y / (exp(-a) + sum(y))
-    return(c(prob_0, probs))
+    return(c(abs(prob_0-1e-7), abs(probs-1e-7)))
   } else {
+    #print("Into Branch 2")
     z = X %*% beta
     p = ifelse(z > 0, 1 / (1 + exp(-z)), exp(z) / (1 + exp(z)))
     return (as.vector(p))
   }
 }
-
 
 

@@ -71,3 +71,11 @@ test_that("X with NaN or Inf values", {
   beta <- c(1, 1)
   expect_error(Logit(X, beta))
 })
+
+
+test_that("Extreme Value", {
+  X = cbind(1,c(100,2000,400))
+  beta = c(1,2)
+  result = c(0.0000001,0.0000001,0.9999999,0.0000001)
+  expect_equal(Logit(X, beta), result)
+})
