@@ -113,7 +113,7 @@ summary(glm_1)
 
 ```
 
-```{r,results='hide'}
+```{r}
 library(bench)
 
 set.seed(123)
@@ -133,7 +133,6 @@ benchmark <- bench::mark(
 ```{r}
 
 plot(benchmark)
-
 ```
 
 
