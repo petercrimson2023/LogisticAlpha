@@ -24,14 +24,26 @@ This R package provides a set of functions for performing logistic regression an
 ## Usage 
 
 ### Sample data
-X <- matrix(rnorm(100), ncol=2)
-y <- rbinom(50, 1, 0.5)
+
+set.seed(123)
+X = matrix(rnorm(100), ncol=2)
+y = rbinom(50, 1, 0.5)
 
 ### Logistic Regression Estimation
 result <- Logistic_Estimation(X, y)
 
 #### View results
 print(result$Coefficients)
+
+## Installation 
+
+### Using devtools::install_github() 
+
+install.packages("devtools")
+library(devtools)
+install_github("https://github.com/petercrimson2023/LogisticAlpha/",ref="Master")
+
+
 
 
 

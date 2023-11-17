@@ -52,7 +52,7 @@ Logistic_Estimation = function(X, y,print_result = FALSE) {
 
   # Newton-Raphson Iteration for coefficient estimation
   # Newton-Raphson Iteration for coefficient estimation
-  tryCatch({
+
     while (delta > 1e-7 && Times < 500) {
       #print(Times)
       Miu = Logit(X, Beta_Old)
@@ -70,11 +70,12 @@ Logistic_Estimation = function(X, y,print_result = FALSE) {
       delta = max(abs(Beta_Old - Beta_New))
       Times = Times + 1
       Beta_Old = Beta_New
+
+      if (NaN %in% Beta_Old) {
+        print("Error: The model does not converge.")
+        return(-1)
+      }
     }
-  }, error = function(e) {
-    print("Error in the Newton-Raphson Iteration, There is 1 in probability, the algorithm can not converge")
-    return(-1)
-  })
 
   # Predict and calculate confusion matrix
   y_pred = Logistic_Predict(X, Beta_Old)
