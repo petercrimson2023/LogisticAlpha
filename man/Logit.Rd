@@ -18,7 +18,15 @@ A numeric vector of logit values. When handling extreme values, the function adj
 This function calculates logit values for a given set of predictors and coefficients. It is designed to handle extreme values in the exponentiation to avoid computational errors.
 }
 \examples{
-X <- matrix(rnorm(20), ncol=2)
-beta <- runif(2)
-logit_values <- Logit(X, beta)
+# Normal Case
+X = matrix(rnorm(20), ncol=2)
+beta = runif(2)
+logit_values = Logit(X, beta)
+
+# Extreme Values
+X = cbind(1,c(100,2000,400))
+beta = c(1,2)
+result = c(0.0000001,0.0000001,0.9999999,0.0000001)
+all.equal(Logit(X, beta), result, tolerance = 0.0001)
+
 }

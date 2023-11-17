@@ -53,6 +53,16 @@ library(devtools)
 install_github("https://github.com/petercrimson2023/LogisticAlpha/",ref="Master")
 
 
+### Checking For Help on Functions
+
+library(LogisticAlpha)
+
+?Logistic_Estimation
+
+?Logistic_Predict
+
+?Logit
+
 
 
 

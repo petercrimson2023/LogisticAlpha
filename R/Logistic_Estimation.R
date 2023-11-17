@@ -32,7 +32,7 @@
 #' print(result$confusion_matrix)
 #'
 #'
-#' #' X =matrix(rnorm(50), ncol = 5)
+#' X =matrix(rnorm(50), ncol = 5)
 #' y =rbinom(10, 1, 0.5)
 #' result =Logistic_Estimation(X, y, print_result = TRUE)
 #' print(result$Coefficients)
