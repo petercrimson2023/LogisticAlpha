@@ -1,11 +1,19 @@
-#' Logistic Regression Estimation
+#' Perform Logistic Regression Estimation
 #'
-#' Performs logistic regression estimation using the Newton-Raphson method. This function estimates coefficients for logistic regression and computes various statistics, including a confusion matrix, standard errors, Z-scores, and p-values.
+#' This function performs logistic regression estimation using the
+#' Newton-Raphson method. It estimates coefficients, calculates standard errors,
+#' Z-scores, p-values, and generates a confusion matrix. The function also allows
+#' printing the results.
 #'
-#' @param X A numeric matrix where each row is an observation and each column is a predictor variable.
-#' @param y A numeric vector of binary response variables (0 or 1) corresponding to each row of X.
+#' @param X A numeric matrix where each row represents an observation and each column
+#' represents a predictor variable.
+#' @param y A numeric vector of binary response variables (0 or 1) corresponding
+#' to each row of X.
+#' @param print_result Logical, indicating whether to print the results. Defaults to FALSE.
+#'
 #' @return A list containing various components:
-#'   - Coefficients: A data frame of logistic regression coefficients, standard errors, Z-scores, and p-values.
+#'   - Coefficients: A data frame of logistic regression coefficients, standard errors,
+#'     Z-scores, and p-values.
 #'   - beta: The final estimated coefficients.
 #'   - y_pred: Predicted values based on the logistic model.
 #'   - times: The number of iterations taken in the Newton-Raphson process.
@@ -13,20 +21,14 @@
 #'   - J_inv: The inverse of the Fisher Information Matrix.
 #'   - delta: The final delta value in the iteration process.
 #'   - confusion_matrix: A confusion matrix of the model.
-#' @importFrom stats pnorm
+#'
 #' @export
 #' @examples
-#' X <- matrix(rnorm(100), ncol=5)
+#' X <- matrix(rnorm(100), ncol = 5)
 #' y <- rbinom(20, 1, 0.5)
 #' result <- Logistic_Estimation(X, y)
 #' print(result$Coefficients)
 #' print(result$confusion_matrix)
-#'
-#' X2 <- matrix(rnorm(20), ncol=2, dimnames = list(NULL, c("Variable1", "Variable2")))
-#' y2 <- rbinom(10, 1, 0.5)
-#' result2 <- Logistic_Estimation(X2, y2)
-#' print(result2$Coefficients)
-#' print(result2$confusion_matrix)
 
 
 # Logistic regression estimation function

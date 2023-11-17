@@ -3,4 +3,3 @@
 export(Logistic_Estimation)
 export(Logistic_Predict)
 export(Logit)
-importFrom(stats,pnorm)
